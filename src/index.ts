@@ -78,8 +78,14 @@ class NotionSSG {
       try {
         const userConfig = JSON.parse(fs.readFileSync(configPath, "utf-8"));
         this.config = { ...this.config, ...userConfig };
-      } catch (error) {
-        console.error(`Error reading config file: ${error.message}`);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error(`Error reading config file: ${err.message}`);
+        } else {
+          console.error(
+            `An unknown error occured while reading the config file : ${err}`
+          );
+        }
       }
     }
 
@@ -134,8 +140,12 @@ class NotionSSG {
       }
 
       return contentData;
-    } catch (error) {
-      throw new Error(`Failed to fetch data from Notion: ${error.message}`);
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new Error(`Failed to fetch data from Notion: ${err.message}`);
+      } else {
+        throw new Error(`Failed to fetch data from Notion: ${err}`);
+      }
     }
   }
 
@@ -322,6 +332,7 @@ class NotionSSG {
       title: "My Notion Site",
       generator: "SSG",
       now: new Date(),
+      slugify: this.slugify.bind(this),
     });
 
     fs.writeFileSync(
@@ -334,10 +345,11 @@ class NotionSSG {
       const pageFilename = `${this.slugify(page.title)}.html`;
       const pageContent = ejs.render(pageTemplate, {
         title: page.title,
-        content: marked(page.content),
+        content: marked.parse(page.content),
         metadata: page.metadata,
         generator: "SSG",
         now: new Date(),
+        slugify: this.slugify.bind(this),
       });
 
       fs.writeFileSync(
@@ -353,8 +365,12 @@ class NotionSSG {
 
       try {
         copySync(this.config.staticDir, staticDest);
-      } catch (error) {
-        console.error(`Error copying static files: ${error.message}`);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error(`Error copying static files: ${err.message}`);
+        } else {
+          console.error(`Error copying static files: ${err}`);
+        }
       }
     }
 
@@ -384,7 +400,7 @@ class NotionSSG {
         <ul>
             <% pages.forEach(function(page) { %>
             <li>
-                <a href="<%= slugify(page.title) %>.html"><%= page.title %></a>
+                <a href="<%= this.slugify(page.title) %>.html"><%= page.title %></a>
                 <% if (page.metadata.description) { %>
                 <p><%= page.metadata.description %></p>
                 <% } %>
@@ -486,14 +502,9 @@ async function main() {
 
   try {
     const generator = new NotionSSG(configPath);
-
-    if (options.output) {
-      generator.config.outputDir = options.output;
-    }
-
     await generator.generateSite();
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
+  } catch (err) {
+    console.error(`Error: ${err}`);
     process.exit(1);
   }
 }

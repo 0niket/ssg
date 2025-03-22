@@ -1,6 +1,6 @@
 {
-  "notionToken": "your_notion_integration_token",
-  "databaseId": "your_notion_database_id",
+  "notionToken": "",
+  "databaseId": "",
   "outputDir": "dist",
   "templatesDir": "templates",
   "staticDir": "static"
