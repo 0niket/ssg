@@ -1,0 +1,7 @@
+{
+    "sourceDir": "content",
+    "outputDir": "public",
+    "templateDir": "templates",
+    "siteTitle": "My Static Site"
+}
+
