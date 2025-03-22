@@ -37,39 +37,39 @@ Here's a comprehensive checklist to set up the Notion APIs correctly for this St
 
 ### Create a Notion Integration
 
-[] Go to https://www.notion.so/my-integrations
-[] Click "New integration"
-[] Name your integration (e.g., "SSG Generator")
-[] Select the workspace where you'll use the integration
-[] Set appropriate capabilities (Read content is required)
-[] Submit to create the integration
-[] Copy the "Internal Integration Token" (this is your NOTION_TOKEN)
+- Go to https://www.notion.so/my-integrations
+- Click "New integration"
+- Name your integration (e.g., "SSG Generator")
+- Select the workspace where you'll use the integration
+- Set appropriate capabilities (Read content is required)
+- Submit to create the integration
+- Copy the "Internal Integration Token" (this is your NOTION_TOKEN)
 
 ### Prepare Your Notion Database
 
-[] Create a new database in Notion (or use an existing one)
-[] Ensure the database has at least a "Name" or "Title" property
-[] Consider adding other properties that the SSG can use (tags, published date, etc.)
+- Create a new database in Notion (or use an existing one)
+- Ensure the database has at least a "Name" or "Title" property
+- Consider adding other properties that the SSG can use (tags, published date, etc.)
 
 ### Share Database with Integration
 
-[] Go to the database page in Notion
-[] Click "..." in the top-right corner
-[] Select "Add connections"
-[] Find and select your integration from the list
-[] Confirm to grant access
+- Go to the database page in Notion
+- Click "..." in the top-right corner
+- Select "Add connections"
+- Find and select your integration from the list
+- Confirm to grant access
 
 ### Get the Database ID
 
-[] Open your database in a browser
-[] Look at the URL: https://www.notion.so/workspace/[database-id]?v=...
-[] Extract the database ID (it's a 32-character string in the URL)
-[] Copy this ID (this is your NOTION_DATABASE_ID)
+- Open your database in a browser
+- Look at the URL: https://www.notion.so/workspace/[database-id]?v=...
+- Extract the database ID (it's a 32-character string in the URL)
+- Copy this ID (this is your NOTION_DATABASE_ID)
 
 ### Configure the SSG Tool
 
-[] Create a .env file in your project root directory
-[] Add the following lines:
+- Create a .env file in your project root directory
+- Add the following lines:
 
 ```
 NOTION_TOKEN=your_integration_token
