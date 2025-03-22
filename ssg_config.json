@@ -1,7 +1,7 @@
 {
-    "sourceDir": "content",
-    "outputDir": "public",
-    "templateDir": "templates",
-    "siteTitle": "My Static Site"
+  "notionToken": "your_notion_integration_token",
+  "databaseId": "your_notion_database_id",
+  "outputDir": "dist",
+  "templatesDir": "templates",
+  "staticDir": "static"
 }
-

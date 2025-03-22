@@ -1,12 +1,50 @@
 {
+  "name": "ssg",
+  "version": "1.0.0",
+  "description": "Static Site Generator for Notion content",
   "main": "dist/index.js",
-  "type": "module",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ssg": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "static-site-generator",
+    "notion",
+    "ssg",
+    "typescript"
+  ],
+  "author": "Aniket Hendre",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.3",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "fs-extra": "^11.2.0",
+    "marked": "^10.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.13.11",
-    "typescript": "^5.8.2"
+    "@eslint/config-array": "^0.19.2",
+    "@eslint/object-schema": "^2.1.6",
+    "@types/ejs": "^3.1.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.14",
+    "@types/marked": "^5.0.2",
+    "@types/node": "^20.10.5",
+    "eslint": "^9.23.0",
+    "glob": "^11.0.1",
+    "jest": "^29.7.0",
+    "lru-cache": "^11.0.2",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
